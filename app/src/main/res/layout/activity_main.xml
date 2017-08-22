@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:fitsSystemWindows="true" android:background="@color/grey_200" tools:context="com.boscotec.andelachallenge.MainActivity">
+    <android.support.design.widget.AppBarLayout android:id="@+id/appbar_layout" android:layout_width="match_parent" android:layout_height="wrap_content" android:theme="@style/AppTheme.AppBarOverlay" >
+        <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" app:layout_scrollFlags="scroll|enterAlways" >
+            <android.support.v7.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="?attr/actionBarSize" app:popupTheme="@style/AppTheme.PopupOverlay">
+                <RelativeLayout android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:paddingTop="8dp" android:paddingRight="8dp" android:paddingBottom="8dp" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true">
+                    <TextView android:id="@+id/toolbarTitle" style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" android:layout_centerInParent="true" android:layout_centerVertical="true" android:gravity="start|center|end|fill" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:textColor="@color/white" android:ellipsize="end" android:focusable="false" android:maxLines="1" android:layout_gravity="center_vertical" />
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+            <android.support.v7.widget.Toolbar android:id="@+id/toolbar_search" android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:background="@color/white" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="?attr/actionBarSize" app:collapseIcon="@drawable/ic_arrow_back" app:titleTextColor="@color/colorPrimary" android:popupTheme="@style/AppTheme.PopupOverlay" />
+        </FrameLayout>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v7.widget.RecyclerView android:background="@color/grey_400" android:id="@+id/recyclerView" android:scrollbars="none" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <ProgressBar android:id="@+id/progressbar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/spacing_large" android:layout_gravity="center"  />
+    <TextView
+        android:id="@+id/emptyTextView"
+        android:text="No Data"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</android.support.design.widget.CoordinatorLayout>
