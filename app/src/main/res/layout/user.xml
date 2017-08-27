@@ -3,15 +3,18 @@
     android:padding="10dp" android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <ImageView
         android:id="@+id/avater"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:adjustViewBounds="true" />
 
+
     <TextView
         android:id="@+id/name"
         android:layout_margin="18dp"
+        android:textSize="18sp"
         android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

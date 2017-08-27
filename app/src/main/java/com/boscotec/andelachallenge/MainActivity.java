@@ -57,10 +57,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Initializing the toolbar
         initToolbar();
 
-  //    setHasOptionsMenu(true);
         progressbar = (ProgressBar) findViewById(R.id.progressbar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
@@ -95,7 +93,6 @@ public class MainActivity extends AppCompatActivity
         progressbar.setVisibility(VISIBLE);
         recyclerView.setVisibility(View.GONE);
 
-        // if (!Utils.verifyConnection(this)) {
         if(!ConnectivityReceiver.isConnected()){
             findViewById(R.id.emptyTextView).setVisibility(View.VISIBLE);
             progressbar.setVisibility(View.GONE);
@@ -150,9 +147,7 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView title = (TextView) findViewById(R.id.toolbarTitle);
         title.setText(getResources().getString(R.string.mainactivity_toolbar_title));
-     //   title.setTypeface(Fontometrics.dosis_medium(this));
         setSupportActionBar(toolbar);
-
         setSearchtoolbar();
     }
 
@@ -177,9 +172,6 @@ public class MainActivity extends AppCompatActivity
                     searchtoolbar.setVisibility(VISIBLE);
 
                 item_search.expandActionView();
-                return true;
-            case R.id.action_settings:
-                Toast.makeText(this, "Home Settings Click", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -54,14 +54,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.name.setText(git.getLogin());
         Glide.with(holder.image.getContext())
                 .load(git.getAvatarUrl())
+                .error(R.drawable.ic_person_white_36dp)
                 .crossFade()
                 .into(holder.image);
     }
 
     @Override
     public int getItemCount() { return this.filterItems.size();}
-    //public long getItemId(int position) {return (long) position;}
-    //public UserDetail getItem(int position){return this.filterItems.get(position);}
 
     @Override
     public Filter getFilter() {

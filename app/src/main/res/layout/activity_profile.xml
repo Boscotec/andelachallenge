@@ -5,69 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
+    <android.support.design.widget.AppBarLayout android:id="@+id/appbar_layout" android:layout_width="match_parent" android:layout_height="wrap_content" android:theme="@style/AppTheme.AppBarOverlay" >
+        <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" app:layout_scrollFlags="scroll|enterAlways" >
+            <android.support.v7.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="?attr/actionBarSize" app:popupTheme="@style/AppTheme.PopupOverlay">
+                <RelativeLayout android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:paddingTop="8dp" android:paddingRight="8dp" android:paddingBottom="8dp" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentLeft="true">
+                    <ImageView android:id="@+id/back_arrow" android:src="@drawable/ic_arrow_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView android:id="@+id/toolbarTitle" style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" android:layout_centerInParent="true" android:layout_centerVertical="true" android:gravity="start|center|end|fill" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:textColor="@color/white" android:ellipsize="end" android:focusable="false" android:maxLines="1" android:layout_gravity="center_vertical" />
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+        </FrameLayout>
     </android.support.design.widget.AppBarLayout>
-
-    <!--
-    <include layout="@layout/content_user_details" />
--->
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_margin="10dp"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.boscotec.andelachallenge.utility.CircleImageView
             android:id="@+id/profile_pix"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:src="@mipmap/ic_launcher_round"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/username"
-            android:text="@string/app_name"
+            android:textSize="20sp"
+            android:text="@string/username"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp" />
 
         <TextView
             android:id="@+id/profile_url"
-            android:text="@string/app_name"
+            android:textSize="18sp"
+            android:text="@string/url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
-
-    <ImageButton
-        android:id="@+id/share_button"
-        android:layout_gravity="center"
-        android:background="@color/transparent"
-        android:src="@drawable/ic_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/share_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/spacing_medium"
+        android:layout_margin="@dimen/spacing_large"
         app:srcCompat="@drawable/ic_share" />
-
 </android.support.design.widget.CoordinatorLayout>

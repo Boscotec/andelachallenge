@@ -1,18 +1,19 @@
 package com.boscotec.andelachallenge;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.boscotec.andelachallenge.utility.ConnectivityReceiver;
+import com.boscotec.andelachallenge.utility.CircleImageView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -23,12 +24,13 @@ import java.util.List;
  */
 
 public class ProfileActivity extends AppCompatActivity
-        implements ConnectivityReceiver.ConnectivityReceiverListener, View.OnClickListener {
+        implements View.OnClickListener {
 
-    TextView profile_url;
-    ImageButton share;
-    String username_tv, profile_pix_tv;
-    String profile_url_tv;
+    TextView tv_profile_url, tv_username;
+    FloatingActionButton fab_share;
+    String username, profile_pix, profile_url;
+    Toolbar toolbar;
+    ImageView back;
 
     @Override
     public void onBackPressed() {
@@ -39,39 +41,57 @@ public class ProfileActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        initToolbar();
 
         if(getIntent()!=null){
            Bundle bundle = getIntent().getExtras();
-           username_tv = bundle.getString("username");
-           profile_pix_tv = bundle.getString("profile_pix");
-           profile_url_tv = bundle.getString("profile_url");
+           username = bundle.getString("username");
+           profile_pix = bundle.getString("profile_pix");
+           profile_url = bundle.getString("html_url");
         }
 
-        ImageView profile_pix = (ImageView) findViewById(R.id.profile_pix);
-        TextView username = (TextView) findViewById(R.id.username);
-        profile_url =(TextView) findViewById(R.id.profile_url);
-        share = (ImageButton) findViewById(R.id.share_button);
-        profile_url.setOnClickListener(this);
-        share.setOnClickListener(this);
+        CircleImageView civ_profile_pix = (CircleImageView) findViewById(R.id.profile_pix);
+        tv_username = (TextView) findViewById(R.id.username);
+        tv_profile_url =(TextView) findViewById(R.id.profile_url);
+        fab_share = (FloatingActionButton) findViewById(R.id.share_button);
 
-        username.setText(username_tv);
-        profile_url.setText(profile_url_tv);
-        Glide.with(profile_pix.getContext())
-                .load(profile_pix_tv)
+        tv_profile_url.setOnClickListener(this);
+        fab_share.setOnClickListener(this);
+
+        tv_username.setText(username);
+        tv_profile_url.setText(profile_url);
+        Glide.with(civ_profile_pix.getContext())
+                .load(profile_pix)
+                .error(R.drawable.ic_person_white_36dp)
                 .crossFade()
-                .into(profile_pix);
+                .into(civ_profile_pix);
+    }
+
+    private void initToolbar(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView title = (TextView) findViewById(R.id.toolbarTitle);
+        back = (ImageView) findViewById(R.id.back_arrow);
+        back.setOnClickListener(this);
+        title.setText(getResources().getString(R.string.mainactivity_toolbar_title));
+        setSupportActionBar(toolbar);
     }
 
     @Override
     public void onClick(View view){
-
-        if(view == share){
-            String message = "Check out this awesome developer @" + username_tv +", " + profile_url_tv;
+        if(view==back){
+            ProfileActivity.super.onBackPressed();
+        }
+        if(view == fab_share){
+            String message = "Check out this awesome developer @" + username +", " + profile_url;
             share(message);
         }
 
-        if(view == profile_url){
-
+        if(view == tv_profile_url){
+            Intent web = new Intent(Intent.ACTION_VIEW);
+            web.setData(Uri.parse(profile_url));
+            web.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY|Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            web.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            startActivity(web);
         }
     }
 
@@ -79,13 +99,6 @@ public class ProfileActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        // register connection status listener
-        MyApplication.getInstance().setConnectivityListener(this);
-    }
-
-    @Override
-    public void onNetworkConnectionChanged(boolean isConnected) {
-        //showSnack(isConnected);
     }
 
     public void share(String message) {

@@ -7,8 +7,4 @@
         android:icon="@drawable/ic_search"
         android:visible="false"
         app:showAsAction="always"/>
-    <item android:id="@+id/action_settings"
-        android:orderInCategory="11"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
 </menu>

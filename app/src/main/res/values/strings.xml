@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AndelaChallenge</string>
     <string name="action_search">Search</string>
-    <string name="action_settings">Setting</string>
     <string name="mainactivity_toolbar_title">Github by Boscotec</string>
+    <string name="username">Username</string>
+    <string name="url">Url</string>
 </resources>

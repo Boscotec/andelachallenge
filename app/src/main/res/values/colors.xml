@@ -2,25 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#a1bfff</color>
 
-     <color name="orange">#FF7F00</color>
-    <color name="accent">#8BC34A</color>
-    <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="secondary_text">#757575</color>
-    <color name="colorPrimaryFade">#a1bfff</color>
     <color name="grey_200">#eeeeee</color>
     <color name="grey_400">#bdbdbd</color>
-    <color name="strawberry">#f50057</color>
-    <color name="bg_bubble_self">#e0e0e0</color>
-     <color name="transparent">#00FFFFFF</color>
-
-  <color name="empty_view_text_color">#BCBCBC</color>
-
-  <color name="green">#5ef10f</color>
-  <color name="yellow">#fcdc3d</color>
-  <color name="red">#dc0303</color>
-  <color name="brown">#8d6e63</color>
 
 </resources>
