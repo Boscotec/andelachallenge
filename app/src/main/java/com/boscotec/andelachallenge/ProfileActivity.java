@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.boscotec.andelachallenge.utility.CircleImageView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,10 +61,10 @@ public class ProfileActivity extends AppCompatActivity
 
         tv_username.setText(username);
         tv_profile_url.setText(profile_url);
-        Glide.with(civ_profile_pix.getContext())
-                .load(profile_pix)
-                .error(R.drawable.ic_person_white_36dp)
+        Glide.with(this).load(profile_pix)
                 .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.ic_person_white_36dp)
                 .into(civ_profile_pix);
     }
 

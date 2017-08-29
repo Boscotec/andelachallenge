@@ -17,7 +17,9 @@ import com.boscotec.andelachallenge.ProfileActivity;
 import com.boscotec.andelachallenge.R;
 import com.boscotec.andelachallenge.model.UserDetail;
 import com.boscotec.andelachallenge.utility.CircleImageView;
+import com.boscotec.andelachallenge.utility.CircleTransform;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,10 +54,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public void onBindViewHolder(UserViewHolder holder, int position) {
         UserDetail git = this.filterItems.get(position);
         holder.name.setText(git.getLogin());
-        Glide.with(holder.image.getContext())
-                .load(git.getAvatarUrl())
-                .error(R.drawable.ic_person_white_36dp)
+        Glide.with(context).load(git.getAvatarUrl())
                 .crossFade()
+                .thumbnail(0.5f)
+                .bitmapTransform(new CircleTransform(context))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.ic_person_white_36dp)
                 .into(holder.image);
     }
 
